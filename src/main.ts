@@ -3,7 +3,11 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.enableCors();
+  app.enableCors({
+    origin: '*',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+  });
   
   // Esto le permite usar el puerto de Render o el 3000 localmente
   const port = process.env.PORT || 3000;
